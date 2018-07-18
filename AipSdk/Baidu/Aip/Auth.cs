@@ -50,6 +50,11 @@ namespace Baidu.Aip
             if (debugLog)
                 Console.WriteLine(url);
             var webReq = (HttpWebRequest) WebRequest.Create(url);
+
+            // 修复xp/win7下报如下错误问题
+            // Failed to request token. The underlying connection was closed: An unexpected error occurred on a send.
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+
             try
             {
                 var resp = (HttpWebResponse) webReq.GetResponse();
