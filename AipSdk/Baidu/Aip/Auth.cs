@@ -77,7 +77,10 @@ namespace Baidu.Aip
                     throw new AipException("Failed to request token. " + e.Message);
                 return null;
             }
-
+            finally
+            {
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls;
+            }
             return null;
         }
 
